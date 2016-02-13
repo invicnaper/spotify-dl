@@ -1,3 +1,7 @@
+[![GitHub license](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
+[![GitHub license](https://img.shields.io/badge/packages-youtube--dl%2Fbs4-red.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
+[![GitHub license](https://img.shields.io/badge/author-naper-blue.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
+[![GitHub license](https://img.shields.io/badge/version-0.0.1-orange.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 # spotify-dl
 a script that allows you to download spotify songs or playlists , written in python
 
