@@ -43,6 +43,8 @@ you can either use your spotify account or downloading single track or playlist 
     
 this will download the track and save it as mp3 format
 
+you can get the song ID by getting the spotify URI of the song
+
 
 ### Contributors ###
 
