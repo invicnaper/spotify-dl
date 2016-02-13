@@ -13,7 +13,7 @@ This README would normally document whatever steps are necessary to get spotify-
 
 ![alt text](http://nsa37.casimages.com/img/2016/02/13/160213111903934479.png "spotfy-dl screen")
 
-# How to Install it ?
+# How to Install ?
 to use spotify-dl , you need to install thoses packages :
   * bs4
   * youtube-dl
@@ -35,5 +35,15 @@ use apt-get install to install youtube-dl
 and pip to install bs4
   
     $ pip install beautifulsoup4
+    
+# How to use ?
+you can either use your spotify account or downloading single track or playlist by providing an ID , ex:
+
+    $ ./spotify-dl --track {spotify_song_id} --dl youtube
+    
+this will download the track and save it as mp3 format
 
 
+### Contributors ###
+
+* Hamza Bourrahim
