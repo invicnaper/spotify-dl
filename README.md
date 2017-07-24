@@ -54,7 +54,7 @@ you can get the song ID by getting the spotify URI of the song
 # Spotify API
 The new version of the spotify api require an access_token for requests, you can check out https://developer.spotify.com/migration-guide-for-unauthenticated-web-api-calls/.
 
-the new patch of spotify-dl have a new argument called: <b> --access_token <∕b>, so the new usage of spotify-dl would be:
+the new patch of spotify-dl have a new argument called:  --access_token , so the new usage of spotify-dl would be:
   
     $ ./spotify-dl --track {spotify_song_id} --dl youtube --access_token <your_access_token>
     
