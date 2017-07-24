@@ -29,6 +29,7 @@ OK      =  GREEN + "[+] " + DEFAULT
 #=======================
 CLIENT_ID=""
 CALL_BACK_URL=""
+
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
 # tab of
 #   https://cloud.google.com/console
@@ -135,6 +136,7 @@ if __name__ == "__main__":
   parser.add_argument('--user', nargs=1, help="set the spotify login")
   parser.add_argument('--password', nargs=1, help="set the spotify password")
   parser.add_argument('--traceback', action='store_true', help="enable traceback")
+  parser.add_argument('--gen_url', action='store_true', help="generate url for getting access_token")
   parser.add_argument('--track', nargs=1, help="spotify track id")
   parser.add_argument('--access_token', nargs=1, help="set the access_token")
   parser.add_argument('-m', nargs=1, help="set a methode")
@@ -143,15 +145,18 @@ if __name__ == "__main__":
 
   try:
       header();
-      if args.dl and args.access_token and args.dl[0] == 'youtube':
-          if args.track:
-              genUrl()
-              #getAccessToken()
-              name = getTrackName(args.track[0], args.access_token[0])
-          link = searchYoutube(name)
-          downloadYoutube(link)
-      else :
-          print ERROR + "use --help for help"
+      if args.gen_url:
+          genUrl()
+      else:
+          if args.dl and args.access_token and args.dl[0] == 'youtube':
+              if args.track:
+                  #genUrl()
+                  #getAccessToken()
+                  name = getTrackName(args.track[0], args.access_token[0])
+              link = searchYoutube(name)
+              downloadYoutube(link)
+          else :
+              print ERROR + "use --help for help"
   except Exception, err:
     print ERROR + "An HTTP error occurred\n"
     if args.traceback:
