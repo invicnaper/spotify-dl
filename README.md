@@ -1,7 +1,7 @@
 [![GitHub license](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 [![GitHub license](https://img.shields.io/badge/packages-youtube--dl%2Fbs4-red.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 [![GitHub license](https://img.shields.io/badge/author-naper-blue.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
-[![GitHub license](https://img.shields.io/badge/version-0.0.1-orange.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
+[![GitHub license](https://img.shields.io/badge/version-0.0.2-orange.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 # spotify-dl
 a script that allows you to download spotify songs or playlists , written in python
 
@@ -10,7 +10,7 @@ This README would normally document whatever steps are necessary to get spotify-
 ### What is this repository for? ###
 
 * spotify-dl allows you to download spotify songs or playlist
-* Version 0.0.1
+* Version 0.0.2
 * This repo contains spotify-dl source code
 
 ### Screen ###
