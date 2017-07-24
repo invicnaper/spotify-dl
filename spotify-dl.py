@@ -12,6 +12,7 @@ import argparse
 import json
 from StringIO import StringIO
 import subprocess
+import traceback
 
 RED     = "\033[31m"
 GREEN   = "\033[32m"
@@ -23,6 +24,11 @@ ACTION  = BLUE + "[+] " + DEFAULT
 ERROR   = RED + "[+] " + DEFAULT
 OK      =  GREEN + "[+] " + DEFAULT
 
+#=======================
+#   Spotify application
+#=======================
+CLIENT_ID=""
+CALL_BACK_URL=""
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
 # tab of
 #   https://cloud.google.com/console
@@ -74,18 +80,36 @@ def searchYoutube(trackname):
     #we return the first result
     return "https://youtube.com" + soup.findAll(attrs={'class':'yt-uix-tile-link'})[0]['href']
 
-def getTrackName(id):
+def getTrackName(id, access_token):
     """ get the spotify track name from id """
     print ACTION + " getting track name"
-    proc = subprocess.Popen('curl -X GET "https://api.spotify.com/v1/tracks/'+ id +'?market=ES" -H "Accept: application/json"', shell=True, stdout=subprocess.PIPE)
+    proc = subprocess.Popen('curl -sS -X GET "https://api.spotify.com/v1/tracks/'+ id +'?market=ES" -H "Authorization: Bearer '+ access_token +'"', shell=True, stdout=subprocess.PIPE)
     tmp = proc.stdout.read()
     #convert from json to string
     #io = StringIO()
     #json.dump(tmp, io)
     data = json.loads(tmp)
-    print OK + "name is " + data["name"]
+    if 'error' in data:
+        print ERROR + "can't found song name"
+        print ERROR + data['error']['message']
+        return None
+    else:
+        print OK + "name is " + data["name"]
+        return data["name"]
 
-    return data["name"]
+def genUrl():
+    """ gen url for getting access token """
+    print ACTION + " generating url for access token"
+    print OK +  "https://accounts.spotify.com/authorize?client_id="+ CLIENT_ID + "&response_type=token&redirect_uri=" + CALL_BACK_URL
+
+def getAccessToken():
+    """ get access token """
+    print ACTION + " getting access token"
+    proc = subprocess.Popen('curl -sS -X GET "https://accounts.spotify.com/authorize?client_id='+ CLIENT_ID +'&response_type=token&redirect_uri='+ CALL_BACK_URL +'" -H "Accept: application/json"', shell=True, stdout=subprocess.PIPE)
+    tmp = proc.stdout.read()
+    data = json.loads(tmp)
+
+    print data
 
 def downloadYoutube(link):
     """ downloading the track """
@@ -110,19 +134,25 @@ if __name__ == "__main__":
   parser.add_argument('--dl', nargs=1, help="set the download methode")
   parser.add_argument('--user', nargs=1, help="set the spotify login")
   parser.add_argument('--password', nargs=1, help="set the spotify password")
+  parser.add_argument('--traceback', action='store_true', help="enable traceback")
   parser.add_argument('--track', nargs=1, help="spotify track id")
+  parser.add_argument('--access_token', nargs=1, help="set the access_token")
   parser.add_argument('-m', nargs=1, help="set a methode")
 
   args = parser.parse_args()
 
   try:
       header();
-      if args.dl and args.dl[0] == 'youtube':
+      if args.dl and args.access_token and args.dl[0] == 'youtube':
           if args.track:
-              name = getTrackName(args.track[0])
+              genUrl()
+              #getAccessToken()
+              name = getTrackName(args.track[0], args.access_token[0])
           link = searchYoutube(name)
           downloadYoutube(link)
       else :
           print ERROR + "use --help for help"
-  except:
+  except Exception, err:
     print ERROR + "An HTTP error occurred\n"
+    if args.traceback:
+    	traceback.print_exc()
