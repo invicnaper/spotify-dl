@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/author-naper-blue.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 [![GitHub license](https://img.shields.io/badge/version-0.0.2-orange.svg)](https://raw.githubusercontent.com/Facetracker-project/facetracker-core/master/COPYING)
 # spotify-dl
-a script that allows you to download spotify songs or playlists , written in python
+A script written in Python that extracts song or playlist information from Spotify and downloads them from YouTube if found.
 
 This README would normally document whatever steps are necessary to get spotify-dl up and running.
 
